@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#07111f">
+<title>Auto Doctor TJ</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#07111f;color:#fff}.app{max-width:520px;min-height:100vh;margin:auto;padding:18px 16px 90px}.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}.logo{display:flex;align-items:center;gap:10px}.logo-icon{width:44px;height:44px;border-radius:14px;background:#16a34a;display:grid;place-items:center;font-size:23px}.logo h1{font-size:20px;margin:0}.logo p{font-size:11px;color:#8fa0b5;margin:3px 0 0}.status{padding:7px 10px;border-radius:20px;background:#132238;color:#8fa0b5;font-size:11px}.hero{background:linear-gradient(145deg,#102d28,#102033);border:1px solid #1d3a3a;border-radius:24px;padding:22px;margin-bottom:16px}.hero h2{margin:0 0 8px;font-size:25px}.hero p{margin:0;color:#9eafc2;line-height:1.5;font-size:14px}.connect{width:100%;margin-top:20px;border:0;padding:15px;border-radius:15px;background:#16a34a;color:#fff;font-size:16px;font-weight:700;cursor:pointer}.section-title{font-size:16px;margin:22px 3px 11px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:11px}.card{background:#0d1a2b;border:1px solid #1b2b40;border-radius:18px;padding:17px}.card .icon{font-size:22px;margin-bottom:10px}.card h3{font-size:14px;margin:0 0 5px}.card p{margin:0;color:#8293a8;font-size:12px}.scan{background:#0d1a2b;border:1px solid #1b2b40;border-radius:20px;padding:18px}.scan-top{display:flex;justify-content:space-between;align-items:center}.scan-top h3{margin:0;font-size:16px}.badge{padding:6px 9px;background:#17253a;border-radius:12px;color:#8fa0b5;font-size:11px}.progress{height:8px;background:#172538;border-radius:10px;overflow:hidden;margin:16px 0 10px}.bar{width:0%;height:100%;background:#16a34a;transition:.3s}.scan-status{font-size:12px;color:#8fa0b5}.data{display:grid;grid-template-columns:1fr 1fr;gap:10px}.data-item{background:#0d1a2b;border:1px solid #1b2b40;padding:15px;border-radius:16px}.data-item span{display:block;color:#8293a8;font-size:11px;margin-bottom:7px}.data-item strong{font-size:18px}.error{display:none;background:#25151b;border:1px solid #65303c;border-radius:18px;padding:17px;margin-top:12px}.error-code{color:#ff687b;font-size:21px;font-weight:800}.error p{color:#b8a6aa;font-size:13px;line-height:1.5}.ai{background:linear-gradient(145deg,#18203a,#101b2e);border:1px solid #29385a;border-radius:20px;padding:18px}.ai-title{display:flex;gap:10px;align-items:center;margin-bottom:10px}.ai-title span{font-size:24px}.ai h3{margin:0;font-size:16px}.ai p{color:#a9b5c8;font-size:13px;line-height:1.6}.analyze{width:100%;border:1px solid #344766;background:#17243a;color:#fff;padding:12px;border-radius:13px;font-weight:600}.bottom{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(520px,100%);padding:10px 16px 13px;background:rgba(7,17,31,.94);backdrop-filter:blur(12px);display:grid;grid-template-columns:repeat(3,1fr);gap:7px;border-top:1px solid #172538}.nav{text-align:center;color:#72839a;font-size:10px;padding:5px}.nav.active{color:#4ade80}.nav div{font-size:19px;margin-bottom:2px}.connected{color:#4ade80!important}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="header"><div class="logo"><div class="logo-icon">🚗</div><div><h1>Auto Doctor TJ</h1><p>Личный автодиагност</p></div></div><div class="status" id="status">Не подключён</div></header>
+<section class="hero"><h2>Диагностика автомобиля</h2><p>Подключите OBD2-адаптер и получите информацию о состоянии автомобиля прямо на телефоне.</p><button class="connect" id="connectBtn" onclick="connectOBD()">🔌 Подключить OBD2</button></section>
+<div class="section-title">Функции</div>
+<section class="grid">
+<div class="card"><div class="icon">🔍</div><h3>Сканирование</h3><p>Поиск ошибок автомобиля</p></div>
+<div class="card"><div class="icon">⚠️</div><h3>Ошибки DTC</h3><p>Коды неисправностей</p></div>
+<div class="card"><div class="icon">📊</div><h3>Live Data</h3><p>Показатели двигателя</p></div>
+<div class="card"><div class="icon">🤖</div><h3>AI Doctor</h3><p>Объяснение проблемы</p></div>
+</section>
+<div class="section-title">Сканирование</div>
+<section class="scan"><div class="scan-top"><h3>Состояние автомобиля</h3><div class="badge" id="scanBadge">Ожидание</div></div><div class="progress"><div class="bar" id="bar"></div></div><div class="scan-status" id="scanStatus">Подключите OBD2 для начала диагностики</div><button class="connect" style="margin-top:15px" onclick="startScan()">🔍 Начать диагностику</button></section>
+<div class="section-title">Параметры двигателя</div>
+<section class="data">
+<div class="data-item"><span>Обороты двигателя</span><strong id="rpm">—</strong></div>
+<div class="data-item"><span>Температура</span><strong id="temp">—</strong></div>
+<div class="data-item"><span>Скорость</span><strong id="speed">—</strong></div>
+<div class="data-item"><span>Напряжение</span><strong id="voltage">—</strong></div>
+</section>
+<div class="error" id="errorBox"><div class="error-code" id="errorCode">P0300</div><p id="errorText">Обнаружена возможная проблема с системой зажигания.</p></div>
+<div class="section-title">AI Doctor</div>
+<section class="ai"><div class="ai-title"><span>🤖</span><h3>Умный анализ</h3></div><p id="aiText">После диагностики здесь появится объяснение найденных ошибок простым языком.</p><button class="analyze" onclick="aiAnalyze()">🤖 Анализировать автомобиль</button></section>
+</div>
+<nav class="bottom"><div class="nav active"><div>🏠</div>Главная</div><div class="nav"><div>📋</div>История</div><div class="nav"><div>⚙️</div>Настройки</div></nav>
+<script>
+let connected=false;
+function connectOBD(){const b=document.getElementById("connectBtn"),s=document.getElementById("status");b.innerText="⏳ Подключение...";setTimeout(()=>{connected=true;s.innerText="● Готов к диагностике";s.classList.add("connected");b.innerText="✅ OBD2 подключён";document.getElementById("scanStatus").innerText="OBD2 готов. Можно начинать диагностику."},1500)}
+function startScan(){if(!connected){alert("Сначала подключите OBD2-адаптер.");return}const bar=document.getElementById("bar"),badge=document.getElementById("scanBadge"),status=document.getElementById("scanStatus");let p=0;badge.innerText="Сканирование";status.innerText="Проверяем системы автомобиля...";const t=setInterval(()=>{p+=10;bar.style.width=p+"%";if(p===30)status.innerText="Проверяем двигатель...";if(p===60)status.innerText="Читаем коды ошибок...";if(p===80)status.innerText="Анализируем параметры...";if(p>=100){clearInterval(t);badge.innerText="Завершено";status.innerText="Диагностика завершена";showDemoData()}},250)}
+function showDemoData(){document.getElementById("rpm").innerText="850";document.getElementById("temp").innerText="91°C";document.getElementById("speed").innerText="0 км/ч";document.getElementById("voltage").innerText="14.2 V";document.getElementById("errorBox").style.display="block";document.getElementById("errorCode").innerText="P0300";document.getElementById("errorText").innerText="Обнаружены пропуски зажигания. Возможные причины: свечи, катушки зажигания, форсунки или подача топлива."}
+function aiAnalyze(){document.getElementById("aiText").innerText="AI Doctor: код P0300 указывает на случайные или множественные пропуски зажигания. Рекомендуется сначала проверить свечи зажигания и катушки, затем форсунки и давление топлива. Не заменяйте детали сразу — сначала проведите проверку."}
+</script>
+</body>
+</html>
